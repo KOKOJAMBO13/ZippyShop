@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Zippy - Онлайн-Маркет</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+ 
+    <header>
+        <div class="container">
+            <h1>ZippyShop</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#categories">Категории</a></li>
+                    <li><a href="#cart" onclick="showCart()">Корзина (<span id="cart-count">0</span>)</a></li>
+                    <li id="auth-link"><a href="#login" onclick="showLogin()">Войти</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Поиск товаров...">
+                <button onclick="searchProducts()">Искать</button>
+            </div>
+        </div>
+    </header>
+
+
+    <section id="slider">
+        <div class="slider-container">
+            <img src="https://img.freepik.com/premium-vector/online-shopping-with-mobile-store-design-discount-promotion-banner_62391-413.jpg" alt="Акция 1" class="slide">
+            <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/online-shopping-banner-template-design-4becd222cad3ce1511f32e5cd53a7dd5_screen.jpg?ts=1624509601" alt="Акция 2" class="slide">
+            <img src="https://www.shutterstock.com/image-vector/3d-shopping-sale-promotion-banner-260nw-2056851833.jpg" alt="Акция 3" class="slide">
+        </div>
+    </section>
+
+ 
+    <section id="popular">
+        <div class="container">
+            <h2>Популярные товары</h2>
+            <div id="product-list" class="product-grid"></div>
+        </div>
+    </section>
+
+
+    <section id="categories">
+        <div class="container">
+            <h2>Категории</h2>
+            <div class="category-list">
+                <button onclick="filterCategory('electronics')">Электроника</button>
+                <button onclick="filterCategory('clothing')">Одежда</button>
+                <button onclick="filterCategory('books')">Книги</button>
+   
+            </div>
+            <div class="sort-options">
+                <label>Сортировка:</label>
+                <select id="sort-select" onchange="sortProducts(this.value)">
+                    <option value="none">Без сортировки</option>
+                    <option value="price-asc">По цене ↑</option>
+                    <option value="price-desc">По цене ↓</option>
+                    <option value="rating-desc">По рейтингу ↓</option>
+                </select>
+            </div>
+            <div id="filtered-products" class="product-grid"></div>
+        </div>
+    </section>
+
+ 
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>Корзина</h2>
+            <div id="cart-items"></div>
+            <p>Итого: <span id="total-price">0</span> руб.</p>
+            <button onclick="checkout()">Оформить заказ</button>
+        </div>
+    </div>
+
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLogin()">&times;</span>
+            <h2>Вход / Регистрация</h2>
+            <input type="text" id="username" placeholder="Логин">
+            <input type="password" id="password" placeholder="Пароль">
+            <button onclick="login()">Войти</button>
+            <button onclick="register()">Регистрация</button>
+        </div>
+    </div>
+
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeProductModal()">&times;</span>
+            <div id="product-details"></div>
+            <div id="reviews"></div>
+            <form id="review-form">
+                <textarea placeholder="Ваш отзыв"></textarea>
+                <button type="button" onclick="addReview()">Добавить отзыв</button>
+            </form>
+        </div>
+    </div>
+
+    <section id="admin-panel" style="display: none;">
+        <div class="container">
+            <h2>Админ-панель</h2>
+            <form id="add-product-form">
+                <input type="text" id="new-name" placeholder="Название">
+                <input type="number" id="new-price" placeholder="Цена">
+                <input type="text" id="new-category" placeholder="Категория">
+                <input type="text" id="new-image" placeholder="URL изображения">
+                <input type="text" id="new-description" placeholder="Описание">
+                <button type="button" onclick="addProduct()">Добавить товар</button>
+            </form>
+            <div id="admin-products"></div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 GeniusShop. Все права защищены.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
